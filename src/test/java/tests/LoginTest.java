@@ -20,7 +20,6 @@ public class LoginTest extends TestInit {
 
         ZakazUaHomePage zakazUaHomePage = new ZakazUaHomePage();
 
-        Selenide.open(BASE_URL);
         zakazUaHomePage.clickLoginButton();
         zakazUaHomePage.enterPhone(PHONE);
         zakazUaHomePage.enterPassword(PASSWORD);

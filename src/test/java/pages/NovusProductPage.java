@@ -1,8 +1,6 @@
 package pages;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.collections.SizeGreaterThan;
 import common.BasePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -10,11 +8,14 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 public class NovusProductPage extends BasePage {
 
+    private static final String ALL_FULL_PRICE_ELEMENTS = "//div[@data-marker='Old Price']/span[contains(@class, 'value')]";
+    private static final String ALL_DISCOUNT_PRICE_ELEMENTS = "//div[@data-marker='Discounted Price']/span[contains(@class, 'value')]";
+
     public ElementsCollection getFullPriceElements() {
-        return $$x("//div[@data-marker='Old Price']/span[contains(@class, 'value')]").shouldHave(sizeGreaterThan(29));
+        return $$x(ALL_FULL_PRICE_ELEMENTS).shouldHave(sizeGreaterThan(29));
     }
 
     public ElementsCollection getDiscountPriceElements() {
-        return $$x("//div[@data-marker='Discounted Price']/span[contains(@class, 'value')]").shouldHave(sizeGreaterThan(29));
+        return $$x(ALL_DISCOUNT_PRICE_ELEMENTS).shouldHave(sizeGreaterThan(29));
     }
 }

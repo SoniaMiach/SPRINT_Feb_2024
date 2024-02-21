@@ -1,6 +1,7 @@
 package common;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
@@ -28,19 +29,14 @@ public class TestInit {
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
-        Configuration.holdBrowserOpen = true;
-
         clearBrowserCookies();
-
         open("/");
-
         WebDriverRunner.getWebDriver().manage().window().maximize();
-
     }
 
     @AfterMethod
     public void closeBrowser() {
-        WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
         softAssert.assertAll();
     }
 }

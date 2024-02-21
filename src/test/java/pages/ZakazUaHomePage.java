@@ -8,28 +8,35 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class ZakazUaHomePage extends TestInit {
 
+    private static final String LOGIN_BUTTON = "//span[text()='Увійти']";
+    private static final String PHONE = "//input[@id ='phone']";
+    private static final String PASSWORD = "//input[@id ='password']";
+    private static final String SUBMIT_BUTTON = "//button[@data-marker='Submit']";
+    private static final String LOG_BUTTON_DISPLAYED = "//div/span[text()='Акаунт']";
+    private static final String NOVUS_SHOP_BUTTON =  "//a[@data-marker='NOVUS']";
+
     public void clickLoginButton() {
-        $x("//span[text()='Увійти']").click();
+        $x(LOGIN_BUTTON).click();
     }
 
     public void enterPhone(String phoneNumber) {
-        $x("//input[@id ='phone']").setValue(phoneNumber);
+        $x(PHONE).setValue(phoneNumber);
     }
 
     public void enterPassword(String pass) {
-        $x("//input[@id ='password']").setValue(pass);
+        $x(PASSWORD).setValue(pass);
     }
 
     public void clickSubmitButton() {
-        $x("//button[@data-marker='Submit']").click();
+        $x(SUBMIT_BUTTON).click();
     }
 
     public boolean isLogButtonDisplayed () {
-            return Selenide.$x("//div/span[text()='Акаунт']").exists();
+            return Selenide.$x(LOG_BUTTON_DISPLAYED).exists();
         }
 
         @Step("Go to Novus page")
     public void clickNovusShopButton() {
-        $x("//a[@data-marker='NOVUS']").click();
+        $x(NOVUS_SHOP_BUTTON).click();
         }
     }
