@@ -3,18 +3,13 @@ package tests;
 import com.codeborne.selenide.Selenide;
 import common.TestInit;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
-import static utils.ConfigProvider.*;
+
+import static utils.ConfigProvider.PASSWORD;
+import static utils.ConfigProvider.PHONE;
 
 public class LoginPageTest extends TestInit {
-
-
-    @BeforeMethod
-    public void setup() {
-    }
-
     @Test
     public void loginPage() {
 
@@ -26,9 +21,7 @@ public class LoginPageTest extends TestInit {
         loginPage.enterPassword(PASSWORD);
         loginPage.clickSubmitButton();
 
-
         Assert.assertTrue(loginPage.isLogButtonDisplayed());
-
 
     }
 }
