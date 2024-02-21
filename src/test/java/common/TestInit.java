@@ -28,6 +28,7 @@ public class TestInit {
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
+        Configuration.holdBrowserOpen = true;
 
         clearBrowserCookies();
 

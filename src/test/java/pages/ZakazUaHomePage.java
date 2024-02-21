@@ -1,12 +1,12 @@
 package pages;
 
 import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
 import common.TestInit;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class LoginPage extends TestInit {
+public class ZakazUaHomePage extends TestInit {
 
     public void clickLoginButton() {
         $x("//span[text()='Увійти']").click();
@@ -24,7 +24,12 @@ public class LoginPage extends TestInit {
         $x("//button[@data-marker='Submit']").click();
     }
 
-        public boolean isLogButtonDisplayed () {
+    public boolean isLogButtonDisplayed () {
             return Selenide.$x("//div/span[text()='Акаунт']").exists();
+        }
+
+        @Step("Go to Novus page")
+    public void clickNovusShopButton() {
+        $x("//a[@data-marker='NOVUS']").click();
         }
     }
