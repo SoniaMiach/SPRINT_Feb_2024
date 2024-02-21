@@ -4,6 +4,8 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import common.TestInit;
 
+import static com.codeborne.selenide.Condition.exist;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage extends TestInit {
@@ -25,6 +27,6 @@ public class LoginPage extends TestInit {
     }
 
         public boolean isLogButtonDisplayed () {
-            return Selenide.$x("//div/span[text()='Акаунт']").exists();
+         return Selenide.$x("//div/span[text()='Акаунт']").shouldBe(visible).exists();
         }
     }
