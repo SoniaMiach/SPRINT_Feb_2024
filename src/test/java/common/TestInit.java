@@ -19,6 +19,8 @@ public class TestInit {
         protected final SoftAssert softAssert = new SoftAssert();
 
 
+
+
     @Step("Preparing a browser for the test")
     @BeforeMethod
     public void setup() {
@@ -28,6 +30,7 @@ public class TestInit {
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
+
 
         clearBrowserCookies();
 

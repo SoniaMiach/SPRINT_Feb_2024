@@ -24,6 +24,10 @@ public class LoginPage extends TestInit {
         $x("//button[@data-marker='Submit']").click();
     }
 
+    public void clickUltramarketButton() {
+        $x("//a[@data-marker='ULTRAMARKET']").click();
+    }
+
         public boolean isLogButtonDisplayed () {
             return Selenide.$x("//div/span[text()='Акаунт']").exists();
         }
