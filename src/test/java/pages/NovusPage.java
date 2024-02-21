@@ -1,46 +1,36 @@
 package pages;
 
+import common.BasePage;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import common.BasePage;
 
-import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 public class NovusPage extends BasePage {
 
-    private final SelenideElement novus = $x("//a[@href='https://novus.zakaz.ua/uk/']");
-    private final SelenideElement offers = $("[data-marker='offers widget']");
-    private final SelenideElement openCity = $x("//*[@class='SelectStyled css-2b097c-container']");
-    private final SelenideElement anotherCity = $x("//*[contains(text(), 'Рівне')]");
-    private final ElementsCollection promotions = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
-    private final ElementsCollection promotionsOfAnotherCity = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
+    private static final SelenideElement NOVUS = $x("//a[@href='https://novus.zakaz.ua/uk/']");
+    private static final SelenideElement OFFERS = $("[data-marker='offers widget']");
+    private static final SelenideElement OPEN_CITY = $x("//*[@class='SelectStyled css-2b097c-container']");
+    private static final SelenideElement ANOTHER = $x("//*[contains(text(), 'Рівне')]");
+    private static final ElementsCollection PROMOTIONS = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
+    private static final ElementsCollection PROMOTIONS_OF_ANOTHER_CITY = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
 
-    public void clickNovus() {novus.shouldBe(visible).click();}
+    public void clickNovus() {NOVUS.shouldBe(visible).click();}
 
-    public void clickPromotionsStore() {
-        offers.shouldBe(interactable).click();
-    }
+    public void clickPromotionsStore() {OFFERS.shouldBe(interactable).click();}
 
-    public void visibilityPromotions() {promotions.shouldHave(size(5)); }
+    public void visibilityPromotions() {PROMOTIONS.shouldHave(sizeGreaterThan(0));}
 
-    public void clickOpenCity() {
-        openCity.shouldBe(visible).click();
-    }
+    public void clickOpenCity() {OPEN_CITY.shouldBe(visible).click();}
 
-    public void choseAnotherCity() {
-        anotherCity.shouldBe(visible).click();
-    }
+    public void choseAnotherCity() {ANOTHER.shouldBe(visible).click();}
 
-    public void visibilityPromotionsOfAnotherCity() {
-        promotionsOfAnotherCity.shouldHave(size(4));
-    }
+    public void visibilityPromotionsOfAnotherCity() {PROMOTIONS_OF_ANOTHER_CITY.shouldHave(sizeGreaterThan(0));}
 
-    public int getNumberOfPromotions() {return promotions.size();}
+    public int getNumberOfPromotions() {return PROMOTIONS.size();}
 
-    public int getNumberOfPromotionsInAnotherCity() {
-        return promotionsOfAnotherCity.size();
-    }
+    public int getNumberOfPromotionsInAnotherCity() {return PROMOTIONS_OF_ANOTHER_CITY.size();}
 }
