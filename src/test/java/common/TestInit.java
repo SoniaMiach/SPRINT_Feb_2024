@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.open;
 public class TestInit {
 
     protected final String BASE_URL = "https://zakaz.ua";
-        protected final SoftAssert softAssert = new SoftAssert();
+    protected final SoftAssert softAssert = new SoftAssert();
 
 
     @Step("Preparing a browser for the test")

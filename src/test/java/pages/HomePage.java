@@ -8,11 +8,16 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class HomePage extends BasePage {
 
+    private static final SelenideElement NOVUS_MARKET = $x("//a[@href='https://novus.zakaz.ua/uk/']");
     private static final SelenideElement CLICK_LOGIN_BUTTON = $x("//span[text()='Увійти']");
     private static final SelenideElement PHONE_FIELD = $x("//input[@id ='phone']");
     private static final SelenideElement PASSWORD_FIELD = $x("//input[@id ='password']");
     private static final SelenideElement SUBMIT_BUTTON = $x("//button[@data-marker='Submit']");
     private static final SelenideElement ACCOUNT_ICON = $x("//div/span[text()='Акаунт']");
+
+    public void clickNovus() {
+        NOVUS_MARKET.shouldBe(visible).click();
+    }
 
     public void clickLoginButton() {
         CLICK_LOGIN_BUTTON.shouldBe().click();
