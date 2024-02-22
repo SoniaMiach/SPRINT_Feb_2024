@@ -1,42 +1,42 @@
 package pages;
 
-import com.codeborne.selenide.Selenide;
-import common.TestInit;
+import com.codeborne.selenide.SelenideElement;
+import common.BasePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$x;
 
-public class ZakazUaHomePage extends TestInit {
+public class ZakazUaHomePage extends BasePage {
 
-    private static final String LOGIN_BUTTON = "//span[text()='Увійти']";
-    private static final String PHONE = "//input[@id ='phone']";
-    private static final String PASSWORD = "//input[@id ='password']";
-    private static final String SUBMIT_BUTTON = "//button[@data-marker='Submit']";
-    private static final String LOG_BUTTON_DISPLAYED = "//div/span[text()='Акаунт']";
-    private static final String NOVUS_SHOP_BUTTON =  "//a[@data-marker='NOVUS']";
+    private static final SelenideElement LOGIN_BUTTON = $x("//span[text()='Увійти']");
+    private static final SelenideElement PHONE = $x("//input[@id ='phone']");
+    private static final SelenideElement PASSWORD = $x("//input[@id ='password']");
+    private static final SelenideElement SUBMIT_BUTTON = $x("//button[@data-marker='Submit']");
+    private static final SelenideElement LOG_BUTTON_DISPLAYED = $x("//div/span[text()='Акаунт']");
+    private static final SelenideElement NOVUS_SHOP_BUTTON = $x("//a[@data-marker='NOVUS']");
 
     public void clickLoginButton() {
-        $x(LOGIN_BUTTON).click();
+        LOGIN_BUTTON.click();
     }
 
     public void enterPhone(String phoneNumber) {
-        $x(PHONE).setValue(phoneNumber);
+        PHONE.setValue(phoneNumber);
     }
 
     public void enterPassword(String pass) {
-        $x(PASSWORD).setValue(pass);
+        PASSWORD.setValue(pass);
     }
 
     public void clickSubmitButton() {
-        $x(SUBMIT_BUTTON).click();
+        SUBMIT_BUTTON.click();
     }
 
-    public boolean isLogButtonDisplayed () {
-            return Selenide.$x(LOG_BUTTON_DISPLAYED).exists();
-        }
+    public boolean isLogButtonDisplayed() {
+        return LOG_BUTTON_DISPLAYED.exists();
+    }
 
-        @Step("Go to Novus page")
+    @Step("Go to Novus page")
     public void clickNovusShopButton() {
-        $x(NOVUS_SHOP_BUTTON).click();
-        }
+        NOVUS_SHOP_BUTTON.click();
     }
+}

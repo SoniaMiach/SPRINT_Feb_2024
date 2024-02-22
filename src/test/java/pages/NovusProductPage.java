@@ -8,14 +8,14 @@ import static com.codeborne.selenide.Selenide.$$x;
 
 public class NovusProductPage extends BasePage {
 
-    private static final String ALL_FULL_PRICE_ELEMENTS = "//div[@data-marker='Old Price']/span[contains(@class, 'value')]";
-    private static final String ALL_DISCOUNT_PRICE_ELEMENTS = "//div[@data-marker='Discounted Price']/span[contains(@class, 'value')]";
+    private static final ElementsCollection ALL_FULL_PRICE_ELEMENTS = $$x("//div[@data-marker='Old Price']/span[contains(@class, 'value')]");
+    private static final ElementsCollection ALL_DISCOUNT_PRICE_ELEMENTS = $$x("//div[@data-marker='Discounted Price']/span[contains(@class, 'value')]");
 
     public ElementsCollection getFullPriceElements() {
-        return $$x(ALL_FULL_PRICE_ELEMENTS).shouldHave(sizeGreaterThan(29));
+        return ALL_FULL_PRICE_ELEMENTS.shouldHave(sizeGreaterThan(29));
     }
 
     public ElementsCollection getDiscountPriceElements() {
-        return $$x(ALL_DISCOUNT_PRICE_ELEMENTS).shouldHave(sizeGreaterThan(29));
+        return ALL_DISCOUNT_PRICE_ELEMENTS.shouldHave(sizeGreaterThan(29));
     }
 }

@@ -10,7 +10,6 @@ import static utils.ConfigProvider.*;
 
 public class LoginTest extends TestInit {
 
-
     @BeforeMethod
     public void setup() {
     }
@@ -25,9 +24,7 @@ public class LoginTest extends TestInit {
         zakazUaHomePage.enterPassword(PASSWORD);
         zakazUaHomePage.clickSubmitButton();
 
-
         Assert.assertTrue(zakazUaHomePage.isLogButtonDisplayed());
-
 
     }
 }
