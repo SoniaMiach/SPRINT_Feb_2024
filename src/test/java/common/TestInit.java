@@ -40,16 +40,13 @@ public class TestInit {
         Configuration.browser = conf.getProperty("browser");
 
         clearBrowserCookies();
-
         open("/");
-
         WebDriverRunner.getWebDriver().manage().window().maximize();
-
     }
 
     @AfterMethod
     public void closeBrowser() {
-        WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
         softAssert.assertAll();
     }
 }
