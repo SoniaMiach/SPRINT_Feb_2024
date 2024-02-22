@@ -1,13 +1,16 @@
 package common;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
+import utils.SuiteConfiguration;
+
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.open;
@@ -15,10 +18,15 @@ import static com.codeborne.selenide.Selenide.open;
 
 @Listeners(listeners.TestListener.class)
 public class TestInit {
-
     protected final String BASE_URL = "https://zakaz.ua";
-        protected final SoftAssert softAssert = new SoftAssert();
 
+    private SuiteConfiguration conf;
+    protected final SoftAssert softAssert = new SoftAssert();
+
+    @BeforeSuite
+    public void setParam() throws IOException {
+        this.conf = new SuiteConfiguration();
+    }
 
     @Step("Preparing a browser for the test")
     @BeforeMethod
@@ -29,6 +37,8 @@ public class TestInit {
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
+        Configuration.browser = conf.getProperty("browser");
+
         clearBrowserCookies();
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();

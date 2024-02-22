@@ -1,12 +1,11 @@
 package tests;
 
-import com.codeborne.selenide.ElementsCollection;
 import common.TestInit;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
+import pages.NovusPage;
 import pages.NovusProductPage;
-import pages.NovusShopPage;
-import pages.ZakazUaHomePage;
+import pages.HomePage;
 
 import java.util.List;
 
@@ -17,16 +16,16 @@ public class NovusDiscountPricesTest extends TestInit {
     @Test(description = "Implement the price comparison for Novus store")
     @Description("SF2-23")
     public void checkDiscountPrices() {
-        ZakazUaHomePage zakazUaHomePage = new ZakazUaHomePage();
-        NovusShopPage novusShopPage = new NovusShopPage();
+        HomePage homePage = new HomePage();
+        NovusPage novusPage = new NovusPage();
         NovusProductPage novusProductPage = new NovusProductPage();
         List<String> fullPriceList;
         List<String> discountPriceList;
 
-        zakazUaHomePage.clickNovusShopButton();
+        homePage.clickMarketIcon("NOVUS");
         switchTo().window(1);
-        novusShopPage.closePopCart();
-        novusShopPage.clickSeeAllCategoryButton("Акційні пропозиції");
+        novusPage.closePopCart();
+        novusPage.clickSeeAllCategoryButton("Акційні пропозиції");
         fullPriceList = getListOfStrings(novusProductPage.getFullPriceElements());
         discountPriceList = getListOfStrings(novusProductPage.getDiscountPriceElements());
 
