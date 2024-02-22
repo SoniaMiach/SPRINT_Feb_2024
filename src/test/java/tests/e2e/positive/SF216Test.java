@@ -1,9 +1,11 @@
 package tests.e2e.positive;
 
+import common.BasePage;
 import common.TestInit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.HomePage;
+import pages.LoginPage;
 import pages.VarusListsPage;
 import pages.VarusProductViewPage;
 
@@ -12,13 +14,13 @@ import static utils.JsUtils.scrollAndRetryUntilFound;
 
 
 public class SF216Test extends TestInit {
-    HomePage homePage;
+    LoginPage loginPage;
     VarusProductViewPage varusProductViewPage;
     VarusListsPage varusListsPage;
 
     @BeforeMethod
     public void pagesSetup() {
-        homePage = new HomePage();
+        loginPage = new LoginPage();
         varusProductViewPage = new VarusProductViewPage();
         varusListsPage = new VarusListsPage();
 
@@ -27,10 +29,8 @@ public class SF216Test extends TestInit {
 
     @Test
     public void sf216() {
-        scrollAndRetryUntilFound(homePage.FIRST_VARUS_CONTAINER_ITEM, 500, 1, 120);
-        homePage
-                .saveFirstProductName()
-                .clickFirstVarusPromotialProduct();
+        scrollAndRetryUntilFound(loginPage.FIRST_VARUS_CONTAINER_ITEM, 500, 1, 120);
+        loginPage.saveFirstProductName().clickFirstVarusPromotialProduct();
 
         switchWindow(1);
 
@@ -42,8 +42,7 @@ public class SF216Test extends TestInit {
 
         varusListsPage
                 .navigate()
-                .checkProductPresentWithName(homePage.productName);
-
+                .checkProductPresentWithName(loginPage.productName);
 
 
     }
