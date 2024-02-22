@@ -28,10 +28,6 @@ public class NovusPage extends BasePage {
         OPEN_CITY.shouldBe(visible).click();
     }
 
-    public void visibilityPromotionsOfAnotherCity() {
-        PROMOTIONS_OF_SPECIFIC_CITY.shouldHave(sizeGreaterThan(0));
-    }
-
     public int getNumberOfPromotions() {
         return PROMOTIONS_OF_CITY.size();
     }
@@ -42,6 +38,11 @@ public class NovusPage extends BasePage {
 
     public boolean isPromotionsExists() {
         return PROMOTIONS_OF_CITY.shouldHave(sizeGreaterThan(0)).size() > 0;
+    }
+
+    public boolean visibilityPromotionsOfAnotherCity() {
+
+        return PROMOTIONS_OF_SPECIFIC_CITY.shouldHave(sizeGreaterThan(0)).size() > 0;
     }
 
     public SelenideElement specificCity(String cityName) {
