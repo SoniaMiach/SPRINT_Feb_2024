@@ -45,7 +45,7 @@ public class TestInit {
     @Step("Closing a browser")
     @AfterMethod
     public void closeBrowser() {
-        WebDriverRunner.getWebDriver().close();
+        WebDriverRunner.getWebDriver().quit();
         softAssert.assertAll();
     }
 }

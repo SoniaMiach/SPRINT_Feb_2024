@@ -17,7 +17,7 @@ public class VerifyPromotionsTest extends TestInit {
     @Description("SF2-9")
     public void verifyPromotions() {
 
-        homePage.clickNovus();
+        homePage.clickMarketIcon("NOVUS");
         switchTo().window(1);
         novusPage.clickPromotionsStore();
         novusPage.isPromotionsExists();
