@@ -56,11 +56,11 @@ public class NovusPage extends BasePage {
     }
 
     public void clickChangeRegionButton() {
-        CHANGE_REGION_BUTTON.click();
+        CHANGE_REGION_BUTTON.shouldBe(interactable).click();
     }
 
     public void clickSelfPickupButton() {
-        SELF_PICKUP_BUTTON.click();
+        SELF_PICKUP_BUTTON.shouldBe(interactable).click();
     }
 
     public String getTextRegion() {
@@ -94,7 +94,5 @@ public class NovusPage extends BasePage {
         } catch (ElementNotFound e) {
             System.out.println("Exception found:" + e.getMessage());
         }
-
     }
-
 }
