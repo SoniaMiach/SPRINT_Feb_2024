@@ -28,6 +28,8 @@ public class TestInit {
         this.conf = new SuiteConfiguration();
     }
 
+
+
     @Step("Preparing a browser for the test")
     @BeforeMethod
     public void setup() {
