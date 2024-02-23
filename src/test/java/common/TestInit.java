@@ -28,6 +28,8 @@ public class TestInit {
         this.conf = new SuiteConfiguration();
     }
 
+
+
     @Step("Preparing a browser for the test")
     @BeforeMethod
     public void setup() {
@@ -38,6 +40,7 @@ public class TestInit {
         Configuration.screenshots = false;
         Configuration.savePageSource = false;
         Configuration.browser = conf.getProperty("browser");
+
 
         clearBrowserCookies();
         open("/");
