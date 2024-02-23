@@ -46,7 +46,6 @@ public class TestInit {
         WebDriverRunner.getWebDriver().manage().window().maximize();
 
     }
-
     @AfterMethod
     public void closeBrowser() {
         WebDriverRunner.getWebDriver().close();

@@ -12,13 +12,11 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class NovusPage extends BasePage {
 
-
     private static final SelenideElement MARKET_OFFERS = $x("//a[@data-marker='offers widget']");
     private static final SelenideElement OPEN_CITY = $x("//div[contains(@class,'SelectStyled')]");
     private static final ElementsCollection PROMOTIONS_OF_CITY = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
     private static final ElementsCollection PROMOTIONS_OF_SPECIFIC_CITY = $$x("//*[@data-testid='offers_list']/*[@data-marker='Offer']");
     private static final String SPECIFIC_CITY = "//*[contains(text(), '%s')]";
-
 
     public void clickPromotionsStore() {
         MARKET_OFFERS.shouldBe(interactable).click();

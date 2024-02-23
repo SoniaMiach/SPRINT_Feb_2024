@@ -11,4 +11,5 @@ public interface ConfigProvider {
 
     String PHONE = readConf().getString("phone");
     String PASSWORD = readConf().getString("password");
+    String CITY = readConf().getString("city");
 }
