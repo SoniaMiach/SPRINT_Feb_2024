@@ -64,15 +64,11 @@ public class NovusPage extends BasePage {
     }
 
     public String getTextRegion() {
-        return REGION.getText();
+        return REGION.shouldBe(interactable).getText();
     }
 
     public void insertRegionField(String nameRegion) {
-        REGION_FIELD.setValue(nameRegion).pressEnter();
-    }
-
-    public void clickToBuyButton() {
-        TO_BUY_BUTTON.click();
+        REGION_FIELD.shouldBe(interactable).setValue(nameRegion).pressEnter();
     }
 
     public SelenideElement specificCity(String cityName) {
