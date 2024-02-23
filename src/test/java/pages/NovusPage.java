@@ -59,7 +59,7 @@ public class NovusPage extends BasePage {
         CHANGE_REGION_BUTTON.shouldBe(interactable).click();
     }
 
-    public void clickSelfPickupButton() {
+    public void clickSelfPickupButton()pull  {
         SELF_PICKUP_BUTTON.shouldBe(interactable).click();
     }
 
