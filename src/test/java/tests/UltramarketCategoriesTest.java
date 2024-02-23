@@ -2,22 +2,23 @@ package tests;
 
 import com.codeborne.selenide.Selenide;
 import common.TestInit;
+import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.UltramarketShopPage;
+import pages.HomePage;
+import pages.UltramarketPage;
 
 public class UltramarketCategoriesTest extends TestInit {
 
-    @Test
-    public void UltramarketSubcategoriesCheck() {
-
+    @Test(description = "Positive test - Checking the ULTRAMARKET subcategory")
+    @Description("SF2-18")
+    public void ultramarketSubcategoriesCheck() {
         String category = "Товари для дому";
         String subcategory = "Техніка";
-        LoginPage loginPage = new LoginPage();
-        UltramarketShopPage ultramarketPage = new UltramarketShopPage();
+        HomePage homePage = new HomePage();
+        UltramarketPage ultramarketPage = new UltramarketPage();
         String productPath;
 
-        loginPage.clickUltramarketButton();
+        homePage.clickMarketIcon("ULTRAMARKET");
         Selenide.switchTo().window(1);
         ultramarketPage.clickCategoryTab(category);
         ultramarketPage.clickSubcategoryButton(subcategory);
@@ -25,6 +26,7 @@ public class UltramarketCategoriesTest extends TestInit {
 
         productPath = ultramarketPage.getProductPath();
 
-        softAssert.assertTrue(productPath.contains("Головна "+ category + " " + subcategory));
+        softAssert.assertTrue(productPath.contains("Головна " + category + " " + subcategory),
+                "The expected path is exactly the same as the actual path. Actual: " + productPath);
     }
 }

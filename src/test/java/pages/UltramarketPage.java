@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
@@ -10,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
-public class UltramarketShopPage {
+public class UltramarketPage {
     public void clickCategoryTab(String categoryName) {
         $x(format("//li[@title='%s']/a/span", categoryName)).shouldBe(interactable).click();
     }
