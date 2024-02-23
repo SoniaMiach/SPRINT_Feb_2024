@@ -95,19 +95,19 @@ public class HomePage extends BasePage {
 
     }
     public void clickFacebookLogo () {
-        FACEBOOK_LOGO.click();
+        FACEBOOK_LOGO.shouldBe(visible).click();
     }
 
     public void clickInstagramLogo () {
-        INSTAGRAM_LOGO.click();
+        INSTAGRAM_LOGO.shouldBe(visible).click();
     }
 
     public void  clickLinkedInLogo () {
-        LINKEDIN_LOGO.click();
+        LINKEDIN_LOGO.shouldBe(visible).click();
     }
 
     public void clickTikTokLogo () {
-        TIKTOK_LOGO.click();
+        TIKTOK_LOGO.shouldBe(visible).click();
     }
 
 }
