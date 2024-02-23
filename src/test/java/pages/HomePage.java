@@ -25,6 +25,7 @@ public class HomePage extends BasePage {
     private static final SelenideElement DEPARTMENT_BUTTON = $x("//div[text()=\"Відділення №1 (до 1100 кг): вул. Карбишева, 1 (поруч з Адреналін-Сіті)\"]");
     private static final SelenideElement CHOOSE_DEPARTMENT_BUTTON = $x("//button[@class=\"jsx-1716201709 Button Button_primarySmall\"]");
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
+    private static final SelenideElement VACANCIES_BUTTON = $x("//*[@id='__next']/div/div/header/div[3]/div/a[1]");
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
@@ -89,6 +90,10 @@ public class HomePage extends BasePage {
     public ElementsCollection getStoreElements() {
         return STORE_ELEMENTS;
 
+    }
+
+    public void clickVacanciesButton() {
+        VACANCIES_BUTTON.shouldBe().click();
     }
 
 }
