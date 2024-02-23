@@ -34,7 +34,6 @@ public class ChangeRegionInTheStoreTest extends TestInit {
 
         String regionText = novusPage.getTextRegion();
 
-        softAssert.assertTrue(regionText.contains(expectedSubstring),
-                "The text does not match " + expectedSubstring);
+        softAssert.assertTrue(regionText.contains(expectedSubstring), "The text does not match " + expectedSubstring);
     }
 }
