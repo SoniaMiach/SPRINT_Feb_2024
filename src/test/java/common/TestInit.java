@@ -12,7 +12,6 @@ import utils.SuiteConfiguration;
 
 import java.io.IOException;
 
-import static com.codeborne.selenide.Selenide.clearBrowserCookies;
 import static com.codeborne.selenide.Selenide.open;
 
 
@@ -39,14 +38,11 @@ public class TestInit {
         Configuration.savePageSource = false;
         Configuration.browser = conf.getProperty("browser");
 
-        clearBrowserCookies();
-
         open("/");
-
         WebDriverRunner.getWebDriver().manage().window().maximize();
-
     }
 
+    @Step("Closing a browser")
     @AfterMethod
     public void closeBrowser() {
         WebDriverRunner.getWebDriver().close();
