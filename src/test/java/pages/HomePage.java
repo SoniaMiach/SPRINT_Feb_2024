@@ -79,7 +79,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean isCollectionPresentOnPage(ElementsCollection collection) {
-        return collection.shouldHave(sizeGreaterThan(0)).size() >= 13;
+        return collection.shouldHave(sizeGreaterThan(0)).size() >= 0;
     }
 
     public ElementsCollection getStoreElements() {

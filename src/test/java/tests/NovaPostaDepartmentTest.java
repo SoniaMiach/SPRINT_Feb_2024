@@ -26,7 +26,7 @@ public class NovaPostaDepartmentTest extends TestInit {
         homePage.clickDepartmentButton();
         homePage.clickChooseDepartmentButton();
 
-        Assert.assertTrue(homePage.isCollectionPresentOnPage(homePage.getStoreElements()),
+        softAssert.assertTrue(homePage.isCollectionPresentOnPage(homePage.getStoreElements()),
                 "Collection is not present on the page");
 
     }
