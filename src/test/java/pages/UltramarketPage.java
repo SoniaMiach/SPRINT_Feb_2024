@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import common.BasePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.interactable;
@@ -9,13 +10,21 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
-public class UltramarketPage {
+public class UltramarketPage extends BasePage {
+    private SelenideElement caregoryTab(String categoryName) {
+        return $x(format("//li[@title='%s']/a/span", categoryName));
+    }
+
+    private SelenideElement subcaregoryTab(String subcategoryName) {
+        return $x(format("//span[contains(text(),'%s') and contains(@class,'NestedList')]", subcategoryName));
+    }
+
     public void clickCategoryTab(String categoryName) {
-        $x(format("//li[@title='%s']/a/span", categoryName)).shouldBe(interactable).click();
+        caregoryTab(categoryName).shouldBe(interactable).click();
     }
 
     public void clickSubcategoryButton(String subcategoryName) {
-        $x(format("//span[contains(text(),'%s') and contains(@class,'NestedList')]", subcategoryName)).shouldBe(interactable).click();
+        subcaregoryTab(subcategoryName).shouldBe(interactable).click();
     }
 
     public void clickFirstProduct() {
