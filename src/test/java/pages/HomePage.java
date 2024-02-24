@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import common.BasePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -25,9 +26,20 @@ public class HomePage extends BasePage {
     private static final SelenideElement DEPARTMENT_BUTTON = $x("//div[text()=\"Відділення №1 (до 1100 кг): вул. Карбишева, 1 (поруч з Адреналін-Сіті)\"]");
     private static final SelenideElement CHOOSE_DEPARTMENT_BUTTON = $x("//button[@class=\"jsx-1716201709 Button Button_primarySmall\"]");
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
+    private static final SelenideElement PLAYMARKET_APP_BUTTON = $x("//span/img[@alt='Google play green']");
+    private static final SelenideElement APPSTORE_APP_BUTTON = $x("//img[@alt='App store green']");
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
+    }
+
+    public void clickPlaymarketAppButton() {
+        PLAYMARKET_APP_BUTTON.shouldBe(interactable).click();
+    }
+
+    public void clickAppstoreAppButton() {
+        APPSTORE_APP_BUTTON.shouldBe(interactable).click();
+
     }
 
     private SelenideElement specificMarketIcon(String marketName) {
