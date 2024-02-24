@@ -6,6 +6,7 @@ import common.TestInit;
 
 import static com.codeborne.selenide.Selectors.byTagName;
 import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.files.DownloadActions.click;
 
 public class LoginPage extends TestInit {
 
@@ -34,7 +35,7 @@ public class LoginPage extends TestInit {
     }
 
     public void clickFirstVarusPromotialProduct() {
-        $x(("(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]")).click();
+        $x("(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]").click();
     }
     public LoginPage clickOnSlidebarMenu(){
         $x(" //button[contains(@class, 'jsx-2666105004 SidebarMenu')]").click();
