@@ -1,0 +1,149 @@
+Index: src/test/java/pages/HomePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package pages;\r\n\r\nimport com.codeborne.selenide.SelenideElement;\r\nimport common.BasePage;\r\n\r\nimport static com.codeborne.selenide.Condition.visible;\r\nimport static com.codeborne.selenide.Selenide.$x;\r\nimport static java.lang.String.format;\r\n\r\npublic class HomePage extends BasePage {\r\n\r\n    private static final SelenideElement LOGIN_BUTTON = $x(\"//span[text()='Увійти']\");\r\n    private static final SelenideElement PHONE_FIELD = $x(\"//input[@id ='phone']\");\r\n    private static final SelenideElement PASSWORD_FIELD = $x(\"//input[@id ='password']\");\r\n    private static final SelenideElement SUBMIT_BUTTON = $x(\"//button[@data-marker='Submit']\");\r\n    private static final SelenideElement ACCOUNT_ICON = $x(\"//div/span[text()='Акаунт']\");\r\n\r\n    public void clickMarketIcon(String marketName) {\r\n        specificMarketIcon(marketName).shouldBe(visible).click();\r\n    }\r\n\r\n    private SelenideElement specificMarketIcon(String marketName) {\r\n        return $x(format(\"//a[@data-marker='%s']\", marketName));\r\n    }\r\n\r\n    public void clickLoginButton() {\r\n        LOGIN_BUTTON.shouldBe().click();\r\n    }\r\n\r\n    public void enterPhone(String phoneNumber) {\r\n        PHONE_FIELD.setValue(phoneNumber);\r\n    }\r\n\r\n    public void enterPassword(String pass) {\r\n        PASSWORD_FIELD.setValue(pass);\r\n    }\r\n\r\n    public void clickSubmitButton() {\r\n        SUBMIT_BUTTON.shouldBe().click();\r\n    }\r\n\r\n    public boolean isLogButtonDisplayed() {\r\n        return ACCOUNT_ICON.shouldBe(visible).exists();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/pages/HomePage.java b/src/test/java/pages/HomePage.java
+--- a/src/test/java/pages/HomePage.java	(revision 7158f8959182f7bf5bc9861fae2e0a98b68f9056)
++++ b/src/test/java/pages/HomePage.java	(date 1708615713345)
+@@ -14,6 +14,8 @@
+     private static final SelenideElement PASSWORD_FIELD = $x("//input[@id ='password']");
+     private static final SelenideElement SUBMIT_BUTTON = $x("//button[@data-marker='Submit']");
+     private static final SelenideElement ACCOUNT_ICON = $x("//div/span[text()='Акаунт']");
++    private static final SelenideElement HELP_BUTTON = $x("//div/a[contains(@href, 'help.zakaz.ua')]");
++
+ 
+     public void clickMarketIcon(String marketName) {
+         specificMarketIcon(marketName).shouldBe(visible).click();
+@@ -42,4 +44,8 @@
+     public boolean isLogButtonDisplayed() {
+         return ACCOUNT_ICON.shouldBe(visible).exists();
+     }
++
++    public void clickHelpButton() {
++        HELP_BUTTON.shouldBe().click();
++    }
+ }
+Index: src/test/java/utils/ConfigProvider.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package utils;\r\n\r\nimport com.typesafe.config.Config;\r\nimport com.typesafe.config.ConfigFactory;\r\n\r\n\r\npublic interface ConfigProvider {\r\n    static Config readConf() {\r\n        return ConfigFactory.load(\"application.conf\");\r\n    }\r\n\r\n    String PHONE = readConf().getString(\"phone\");\r\n    String PASSWORD = readConf().getString(\"password\");\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/utils/ConfigProvider.java b/src/test/java/utils/ConfigProvider.java
+--- a/src/test/java/utils/ConfigProvider.java	(revision 7158f8959182f7bf5bc9861fae2e0a98b68f9056)
++++ b/src/test/java/utils/ConfigProvider.java	(date 1708620300784)
+@@ -11,4 +11,5 @@
+ 
+     String PHONE = readConf().getString("phone");
+     String PASSWORD = readConf().getString("password");
++    String SEARCH_QUERY = readConf().getString("query");
+ }
+Index: src/test/java/common/TestInit.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package common;\r\n\r\nimport com.codeborne.selenide.Configuration;\r\nimport com.codeborne.selenide.WebDriverRunner;\r\nimport io.qameta.allure.Step;\r\nimport org.testng.annotations.AfterMethod;\r\nimport org.testng.annotations.BeforeMethod;\r\nimport org.testng.annotations.BeforeSuite;\r\nimport org.testng.annotations.Listeners;\r\nimport org.testng.asserts.SoftAssert;\r\nimport utils.SuiteConfiguration;\r\n\r\nimport java.io.IOException;\r\n\r\nimport static com.codeborne.selenide.Selenide.clearBrowserCookies;\r\nimport static com.codeborne.selenide.Selenide.open;\r\n\r\n\r\n@Listeners(listeners.TestListener.class)\r\npublic class TestInit {\r\n    protected final String BASE_URL = \"https://zakaz.ua\";\r\n\r\n    private SuiteConfiguration conf;\r\n    protected final SoftAssert softAssert = new SoftAssert();\r\n\r\n    @BeforeSuite\r\n    public void setParam() throws IOException {\r\n        this.conf = new SuiteConfiguration();\r\n    }\r\n\r\n    @Step(\"Preparing a browser for the test\")\r\n    @BeforeMethod\r\n    public void setup() {\r\n        Configuration.baseUrl = BASE_URL;\r\n        System.setProperty(\"selenide.reportsFolder\", \"./target\");\r\n        Configuration.reportsFolder = \"./target\";\r\n        Configuration.downloadsFolder = \"./target\";\r\n        Configuration.screenshots = false;\r\n        Configuration.savePageSource = false;\r\n        Configuration.browser = conf.getProperty(\"browser\");\r\n\r\n        clearBrowserCookies();\r\n        open(\"/\");\r\n        WebDriverRunner.getWebDriver().manage().window().maximize();\r\n    }\r\n\r\n    @AfterMethod\r\n    public void closeBrowser() {\r\n        WebDriverRunner.getWebDriver().quit();\r\n        softAssert.assertAll();\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/common/TestInit.java b/src/test/java/common/TestInit.java
+--- a/src/test/java/common/TestInit.java	(revision 7158f8959182f7bf5bc9861fae2e0a98b68f9056)
++++ b/src/test/java/common/TestInit.java	(date 1708621642685)
+@@ -38,6 +38,7 @@
+         Configuration.screenshots = false;
+         Configuration.savePageSource = false;
+         Configuration.browser = conf.getProperty("browser");
++      //  Configuration.holdBrowserOpen=true;
+ 
+         clearBrowserCookies();
+         open("/");
+Index: src/test/resources/application.conf
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>phone=\"996268083\"\r\npassword=\"123456zakaz\"\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/resources/application.conf b/src/test/resources/application.conf
+--- a/src/test/resources/application.conf	(revision 7158f8959182f7bf5bc9861fae2e0a98b68f9056)
++++ b/src/test/resources/application.conf	(date 1708620300697)
+@@ -1,3 +1,4 @@
+ phone="996268083"
+ password="123456zakaz"
++query="акції"
+ 
+Index: src/test/java/tests/HelpSearchFieldTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/tests/HelpSearchFieldTest.java b/src/test/java/tests/HelpSearchFieldTest.java
+new file mode 100644
+--- /dev/null	(date 1708683103471)
++++ b/src/test/java/tests/HelpSearchFieldTest.java	(date 1708683103471)
+@@ -0,0 +1,22 @@
++package tests;
++
++import common.TestInit;
++import org.testng.Assert;
++import org.testng.annotations.Test;
++import pages.HelpPage;
++import pages.HomePage;
++
++import static utils.ConfigProvider.SEARCH_QUERY;
++
++public class HelpSearchFieldTest extends TestInit {
++    HomePage homePage = new HomePage();
++    HelpPage helpPage = new HelpPage();
++
++    @Test
++    public void checkHelpSearchField() {
++
++        homePage.clickHelpButton();
++        helpPage.enterQuery(SEARCH_QUERY);
++        softAssert.assertTrue( helpPage.searchResults());
++    }
++}
+Index: src/test/java/pages/HelpPage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/pages/HelpPage.java b/src/test/java/pages/HelpPage.java
+new file mode 100644
+--- /dev/null	(date 1708683400244)
++++ b/src/test/java/pages/HelpPage.java	(date 1708683400244)
+@@ -0,0 +1,30 @@
++package pages;
++
++import com.codeborne.selenide.CollectionCondition;
++import com.codeborne.selenide.Condition;
++import com.codeborne.selenide.ElementsCollection;
++import com.codeborne.selenide.SelenideElement;
++import common.BasePage;
++
++import java.util.List;
++
++import static com.codeborne.selenide.Condition.visible;
++import static com.codeborne.selenide.Selenide.$$x;
++import static com.codeborne.selenide.Selenide.$x;
++
++
++public class HelpPage extends BasePage {
++
++    private static final SelenideElement HELP_SEARCH_BUTTON = $x("//input[@type='search']");
++    private static final ElementsCollection SEARCH_RESULTS = $$x("//li[@class='search-result-list-item result-article']");
++
++    public void enterQuery(String query) {
++        HELP_SEARCH_BUTTON.setValue(query).pressEnter();
++    }
++
++
++    public boolean searchResults() {
++        return SEARCH_RESULTS.shouldHave(CollectionCondition.sizeGreaterThan(0)).isEmpty();
++    }
++
++}
