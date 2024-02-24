@@ -41,11 +41,11 @@ public class TestInit {
         Configuration.savePageSource = false;
         Configuration.browser = conf.getProperty("browser");
 
-
-        clearBrowserCookies();
         open("/");
+
         WebDriverRunner.getWebDriver().manage().window().maximize();
     }
+
     @AfterMethod
     public void closeBrowser() {
         WebDriverRunner.getWebDriver().quit();

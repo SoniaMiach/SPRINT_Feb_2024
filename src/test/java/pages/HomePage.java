@@ -28,6 +28,10 @@ public class HomePage extends BasePage {
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
     private static final SelenideElement PLAYMARKET_APP_BUTTON = $x("//span/img[@alt='Google play green']");
     private static final SelenideElement APPSTORE_APP_BUTTON = $x("//img[@alt='App store green']");
+    public static final SelenideElement FACEBOOK_LOGO = $x("//a[contains(@class, 'SocialItem_facebook')]");
+    public static final SelenideElement INSTAGRAM_LOGO = $x("//a[contains(@class, 'SocialItem_instagram')]");
+    public static final SelenideElement LINKEDIN_LOGO = $x("//a[contains(@class, 'linkedin')]");
+    public static final SelenideElement TIKTOK_LOGO = $x("//a[contains(@class, 'tiktok')]");
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
@@ -101,6 +105,21 @@ public class HomePage extends BasePage {
     public ElementsCollection getStoreElements() {
         return STORE_ELEMENTS;
 
+    }
+    public void clickFacebookLogo () {
+        FACEBOOK_LOGO.shouldBe(visible).click();
+    }
+
+    public void clickInstagramLogo () {
+        INSTAGRAM_LOGO.shouldBe(visible).click();
+    }
+
+    public void  clickLinkedInLogo () {
+        LINKEDIN_LOGO.shouldBe(visible).click();
+    }
+
+    public void clickTikTokLogo () {
+        TIKTOK_LOGO.shouldBe(visible).click();
     }
 
 }
