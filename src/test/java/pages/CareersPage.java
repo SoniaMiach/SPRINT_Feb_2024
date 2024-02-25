@@ -2,7 +2,8 @@ package pages;
 
 import common.BasePage;
 import com.codeborne.selenide.SelenideElement;
-
+import java.time.Duration;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class CareersPage extends BasePage {
@@ -14,14 +15,14 @@ public class CareersPage extends BasePage {
     public static final String INPUT_EMAIL_FIELD = "//input[@type='email' and @id='64b4f4b97dd516000f99b880-contactForm_email']";
     public static final String INPUT_MESSAGE_FIELD = "//textarea[@id='64b4f4b97dd516000f99b880-4087ac06-b82b-4c2e-b967-80f361470a0e']";
     public static final SelenideElement SEND_BUTTON = $x("//span[@class='w-form-button__text' and text()='Надіслати']");
-    public static final SelenideElement ADDITIONAL_WINDOW = $x("//section[@class='w-form-message__content']");
-    public static final SelenideElement okButtonInAdditionalWindow = $x("//span[@class='w-text-content' and text()='Ok']");
+    public static final SelenideElement ADDITIONAL_WINDOW = $x("//span[@class='w-form-message__status-ico']");
+    public static final SelenideElement okButtonInAdditionalWindow = $x("//span[@class='w-form-message__inner-text text_1k0 ui-text w-body']");
 
     public void clickContactsButton() {
-        CONTACTS_BUTTON.click();
+        CONTACTS_BUTTON.shouldBe(visible).click();
     }
 
-    public boolean findFeedbackForm() {
+    public boolean isFeedbackFormDisplayed() {
         return FEEDBACK_FORM.isDisplayed();
     }
 
@@ -50,14 +51,21 @@ public class CareersPage extends BasePage {
     }
 
     public void clickSendButton() {
-        SEND_BUTTON.click();
+        SEND_BUTTON.shouldBe(visible).click();
     }
 
-    public boolean findAdditionalWindow() {
-        return ADDITIONAL_WINDOW.isDisplayed();
+    public boolean isAdditionalWindowDisplayed() {
+        return ADDITIONAL_WINDOW.isEnabled();
+    }
+
+    public boolean isAdditionalWindowNotDisplayed() {
+        ADDITIONAL_WINDOW.should(not(visible), Duration.ofSeconds(1)); // Wait up to 10 seconds until the element is not visible
+        return !ADDITIONAL_WINDOW.isDisplayed();
     }
 
     public void clickOkButtonInAdditionalWindow() {
-        okButtonInAdditionalWindow.click();
+        okButtonInAdditionalWindow.shouldBe(visible).click();
     }
+
+
 }

@@ -93,7 +93,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickVacanciesButton() {
-        VACANCIES_BUTTON.shouldBe().click();
+        VACANCIES_BUTTON.shouldBe(visible).click();
     }
 
 }
