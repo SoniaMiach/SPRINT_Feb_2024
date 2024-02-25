@@ -8,11 +8,10 @@ import pages.LoginPage;
 import pages.MetroProductListPage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static jdk.internal.agent.Agent.getText;
 import static utils.HandlesUtils.switchWindow;
 import static utils.SortUtils.checkSortedLowToHigh;
 
-public class SF28Test extends TestInit {
+public class ProductsListTest extends TestInit {
     LoginPage loginPage;
     MetroProductListPage metroProductListPage;
 
@@ -22,9 +21,12 @@ public class SF28Test extends TestInit {
         metroProductListPage = new MetroProductListPage();
     }
 
-    @Test
-    public void sf28() {
-        loginPage.clickOnSlidebarMenu().clickMetro();
+    @Test(description = "This test adds Metro low price products to the list(cart)")
+
+    public void addToWishListTest() {
+        loginPage.clickOnSlidebarMenu();
+
+        loginPage.clickMetro();
         switchWindow(1);
         metroProductListPage.clickSearchInput();
 
@@ -47,8 +49,6 @@ public class SF28Test extends TestInit {
         metroProductListPage.clickCartButton();
 
         checkProductInCartPage(metroProductListPage.cheapestProductTitle);
-
-
     }
 
     public void sortLowToHighPrices() {
@@ -56,10 +56,8 @@ public class SF28Test extends TestInit {
         softAssert.assertTrue(checkSortedLowToHigh(prices));
     }
     public void checkProductInCartPage(String expectedTitle) {
-        softAssert.assertEquals(expectedTitle,metroProductListPage.NAME_OF_PRODUCT_IN_CART.text());
-        }
-
-
-
+        softAssert.assertEquals(expectedTitle, metroProductListPage.NAME_OF_PRODUCT_IN_CART.text());
     }
+
+}
 

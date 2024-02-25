@@ -37,12 +37,14 @@ public class LoginPage extends TestInit {
     public void clickFirstVarusPromotialProduct() {
         $x("(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]").click();
     }
-    public LoginPage clickOnSlidebarMenu(){
+
+    public void clickOnSlidebarMenu() {
         $x(" //button[contains(@class, 'jsx-2666105004 SidebarMenu')]").click();
-        return this;
+
     }
-    public void clickMetro(){
-            $x("(//*[@data-marker='METRO'])[2]").click();
+
+    public void clickMetro() {
+        $x("(//*[@data-marker='METRO'])[2]").click();
 
     }
 
@@ -51,9 +53,9 @@ public class LoginPage extends TestInit {
 
         SelenideElement firstProductFromVarusPromotionList = $x(FIRST_VARUS_CONTAINER_ITEM);
         productName = firstProductFromVarusPromotionList.findAll(byTagName("h3")).first().text();
-        return this;
-
+return this;
     }
+
 }
 
 

@@ -4,8 +4,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.*;
 
 public class JsUtils {
     public static void scrollAndRetryUntilFound(String xpath, int pixelsToScroll, int waitTimeSeconds, int timeoutSeconds) {
@@ -14,13 +13,13 @@ public class JsUtils {
 
         while (System.currentTimeMillis() < endTime) {
             try {
-                SelenideElement element = $(By.xpath(xpath));
+                SelenideElement element = $x(xpath);
                 boolean isDisplayed = element.isDisplayed();
                 if (isDisplayed) {
                     return;
                 }
             } catch (Exception e) {
-                // Element not found, continue scrolling
+
             }
             executeJavaScript("window.scrollBy(0, arguments[0]);", pixelsToScroll);
             Selenide.sleep(waitTimeSeconds * 1000L);
