@@ -25,10 +25,6 @@ public class HomePage extends BasePage {
     private static final SelenideElement CHOOSE_DEPARTMENT_BUTTON = $x("//button[@class=\"jsx-1716201709 Button Button_primarySmall\"]");
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
     private static final SelenideElement VACANCIES_BUTTON = $x("//*[@id='__next']/div/div/header/div[3]/div/a[1]");
-    private static final SelenideElement FACEBOOK_LOGO = $x("//a[contains(@class, 'SocialItem_facebook')]");
-    private static final SelenideElement INSTAGRAM_LOGO = $x("//a[contains(@class, 'SocialItem_instagram')]");
-    private static final SelenideElement LINKEDIN_LOGO = $x("//a[contains(@class, 'linkedin')]");
-    private static final SelenideElement TIKTOK_LOGO = $x("//a[contains(@class, 'tiktok')]");
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
@@ -98,21 +94,4 @@ public class HomePage extends BasePage {
     public void clickVacanciesButton() {
         VACANCIES_BUTTON.click();
     }
-
-    public void clickFacebookLogo() {
-        FACEBOOK_LOGO.click();
-    }
-
-    public void clickInstagramLogo() {
-        INSTAGRAM_LOGO.click();
-    }
-
-    public void clickLinkedInLogo() {
-        LINKEDIN_LOGO.click();
-    }
-
-    public void clickTikTokLogo() {
-        TIKTOK_LOGO.click();
-    }
-
 }
