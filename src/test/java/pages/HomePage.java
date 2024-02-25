@@ -29,6 +29,10 @@ public class HomePage extends BasePage {
     private static final SelenideElement DEPARTMENT_BUTTON = $x("//div[text()=\"Відділення №1 (до 1100 кг): вул. Карбишева, 1 (поруч з Адреналін-Сіті)\"]");
     private static final SelenideElement CHOOSE_DEPARTMENT_BUTTON = $x("//button[@class=\"jsx-1716201709 Button Button_primarySmall\"]");
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
+    public static final SelenideElement FACEBOOK_LOGO = $x("//a[contains(@class, 'SocialItem_facebook')]");
+    public static final SelenideElement INSTAGRAM_LOGO = $x("//a[contains(@class, 'SocialItem_instagram')]");
+    public static final SelenideElement LINKEDIN_LOGO = $x("//a[contains(@class, 'linkedin')]");
+    public static final SelenideElement TIKTOK_LOGO = $x("//a[contains(@class, 'tiktok')]");
     public final String FIRST_VARUS_CONTAINER_ITEM = "(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]";
     public String productName;
 
