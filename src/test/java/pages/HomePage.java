@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import common.BasePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -32,6 +33,14 @@ public class HomePage extends BasePage {
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
+    }
+
+    public void clickMarketAppButton(String name) {
+        specificAppMarket(name).shouldBe(interactable).click();
+    }
+
+    private SelenideElement specificAppMarket(String marketName) {
+        return $x(format("//img[@alt='%s green']", marketName));
     }
 
     private SelenideElement specificMarketIcon(String marketName) {
@@ -94,19 +103,20 @@ public class HomePage extends BasePage {
         return STORE_ELEMENTS;
 
     }
-    public void clickFacebookLogo () {
+
+    public void clickFacebookLogo() {
         FACEBOOK_LOGO.shouldBe(visible).click();
     }
 
-    public void clickInstagramLogo () {
+    public void clickInstagramLogo() {
         INSTAGRAM_LOGO.shouldBe(visible).click();
     }
 
-    public void  clickLinkedInLogo () {
+    public void clickLinkedInLogo() {
         LINKEDIN_LOGO.shouldBe(visible).click();
     }
 
-    public void clickTikTokLogo () {
+    public void clickTikTokLogo() {
         TIKTOK_LOGO.shouldBe(visible).click();
     }
 

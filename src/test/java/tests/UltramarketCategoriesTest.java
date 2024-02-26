@@ -1,11 +1,12 @@
 package tests;
 
-import com.codeborne.selenide.Selenide;
 import common.TestInit;
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import pages.HomePage;
 import pages.UltramarketPage;
+
+import static com.codeborne.selenide.Selenide.switchTo;
 
 public class UltramarketCategoriesTest extends TestInit {
 
@@ -19,7 +20,7 @@ public class UltramarketCategoriesTest extends TestInit {
         String productPath;
 
         homePage.clickMarketIcon("ULTRAMARKET");
-        Selenide.switchTo().window(1);
+        switchTo().window(1);
         ultramarketPage.clickCategoryTab(category);
         ultramarketPage.clickSubcategoryButton(subcategory);
         ultramarketPage.clickFirstProduct();
