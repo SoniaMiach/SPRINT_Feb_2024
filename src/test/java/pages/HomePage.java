@@ -26,8 +26,6 @@ public class HomePage extends BasePage {
     private static final SelenideElement DEPARTMENT_BUTTON = $x("//div[text()=\"Відділення №1 (до 1100 кг): вул. Карбишева, 1 (поруч з Адреналін-Сіті)\"]");
     private static final SelenideElement CHOOSE_DEPARTMENT_BUTTON = $x("//button[@class=\"jsx-1716201709 Button Button_primarySmall\"]");
     private static final ElementsCollection STORE_ELEMENTS = $$x(" //div[@class='jsx-1810534291 FlexList__item']");
-    private static final SelenideElement PLAYMARKET_APP_BUTTON = $x("//span/img[@alt='Google play green']");
-    private static final SelenideElement APPSTORE_APP_BUTTON = $x("//img[@alt='App store green']");
     public static final SelenideElement FACEBOOK_LOGO = $x("//a[contains(@class, 'SocialItem_facebook')]");
     public static final SelenideElement INSTAGRAM_LOGO = $x("//a[contains(@class, 'SocialItem_instagram')]");
     public static final SelenideElement LINKEDIN_LOGO = $x("//a[contains(@class, 'linkedin')]");
@@ -37,13 +35,12 @@ public class HomePage extends BasePage {
         specificMarketIcon(marketName).shouldBe(visible).click();
     }
 
-    public void clickPlaymarketAppButton() {
-        PLAYMARKET_APP_BUTTON.shouldBe(interactable).click();
+    public void clickMarketAppButton(String name) {
+        specificAppMarket(name).shouldBe(interactable).click();
     }
 
-    public void clickAppstoreAppButton() {
-        APPSTORE_APP_BUTTON.shouldBe(interactable).click();
-
+    private SelenideElement specificAppMarket(String marketName) {
+        return $x(format("//img[@alt='%s green']", marketName));
     }
 
     private SelenideElement specificMarketIcon(String marketName) {
@@ -106,19 +103,20 @@ public class HomePage extends BasePage {
         return STORE_ELEMENTS;
 
     }
-    public void clickFacebookLogo () {
+
+    public void clickFacebookLogo() {
         FACEBOOK_LOGO.shouldBe(visible).click();
     }
 
-    public void clickInstagramLogo () {
+    public void clickInstagramLogo() {
         INSTAGRAM_LOGO.shouldBe(visible).click();
     }
 
-    public void  clickLinkedInLogo () {
+    public void clickLinkedInLogo() {
         LINKEDIN_LOGO.shouldBe(visible).click();
     }
 
-    public void clickTikTokLogo () {
+    public void clickTikTokLogo() {
         TIKTOK_LOGO.shouldBe(visible).click();
     }
 

@@ -8,24 +8,24 @@ import pages.HomePage;
 
 import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.switchTo;
+import static com.codeborne.selenide.WebDriverRunner.url;
 
 public class DownloadAppFunctionalityTest extends TestInit {
+    HomePage homePage = new HomePage();
 
     @Test(description = "Positive test - Check 'Download App' Button ")
     @Description("SF2-14")
     public void downloadAppTest(){
-        HomePage homePage = new HomePage();
-
-        homePage.clickPlaymarketAppButton();
+        homePage.clickMarketAppButton("Google play");
         switchTo().window(1);
 
-        softAssert.assertTrue(WebDriverRunner.url().contains("https://play.google.com/store/apps/details?id=ua.zakaz.android"));
+        softAssert.assertTrue(url().contains("https://play.google.com/store/apps/details?id=ua.zakaz.android"));
 
         closeWindow();
         switchTo().window(0);
-        homePage.clickAppstoreAppButton();
+        homePage.clickMarketAppButton("App store");
         switchTo().window(1);
 
-        softAssert.assertTrue(WebDriverRunner.url().contains("https://apps.apple.com/ua/app/zakaz-ua-grocery-delivery"));
+        softAssert.assertTrue(url().contains("https://apps.apple.com/ua/app/zakaz-ua-grocery-delivery"));
     }
 }
