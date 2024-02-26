@@ -6,7 +6,10 @@ import common.BasePage;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.visible;
+
+
 import static com.codeborne.selenide.Selenide.$$x;
+import static com.codeborne.selenide.Selectors.byTagName;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
@@ -17,6 +20,7 @@ public class HomePage extends BasePage {
     private static final SelenideElement PASSWORD_FIELD = $x("//input[@id ='password']");
     private static final SelenideElement SUBMIT_BUTTON = $x("//button[@data-marker='Submit']");
     private static final SelenideElement ACCOUNT_ICON = $x("//div/span[text()='Акаунт']");
+
     private static final SelenideElement ENTER_DELIVERY_ADDRESS_BUTTON = $x("//span[@class=\"css-rewdt4\"]");
     private static final SelenideElement NOVA_POSTA_BUTTON = $x("//li[text()=\"Нова пошта\"]");
     private static final SelenideElement CITY_INPUT_FIELD = $x("//input[@id=\"settlement_select\"]");
@@ -29,6 +33,20 @@ public class HomePage extends BasePage {
     public static final SelenideElement INSTAGRAM_LOGO = $x("//a[contains(@class, 'SocialItem_instagram')]");
     public static final SelenideElement LINKEDIN_LOGO = $x("//a[contains(@class, 'linkedin')]");
     public static final SelenideElement TIKTOK_LOGO = $x("//a[contains(@class, 'tiktok')]");
+    public final String FIRST_VARUS_CONTAINER_ITEM = "(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]";
+    public String productName;
+
+    public void clickFirstVarusPromotialProduct() {
+        $x(("(//img[@alt='varus']/ancestor::div[1]/ancestor::div[1]/following-sibling::div[1]//div[contains(@class,'Slider__item')])[1]")).click();
+    }
+
+
+    public HomePage saveFirstProductName() {
+
+        SelenideElement firstProductFromVarusPromotionList = $x(FIRST_VARUS_CONTAINER_ITEM);
+        productName = firstProductFromVarusPromotionList.findAll(byTagName("h3")).first().text();
+        return this;
+    }
 
     public void clickMarketIcon(String marketName) {
         specificMarketIcon(marketName).shouldBe(visible).click();
@@ -93,21 +111,6 @@ public class HomePage extends BasePage {
     public ElementsCollection getStoreElements() {
         return STORE_ELEMENTS;
 
-    }
-    public void clickFacebookLogo () {
-        FACEBOOK_LOGO.shouldBe(visible).click();
-    }
-
-    public void clickInstagramLogo () {
-        INSTAGRAM_LOGO.shouldBe(visible).click();
-    }
-
-    public void  clickLinkedInLogo () {
-        LINKEDIN_LOGO.shouldBe(visible).click();
-    }
-
-    public void clickTikTokLogo () {
-        TIKTOK_LOGO.shouldBe(visible).click();
     }
 
 }
