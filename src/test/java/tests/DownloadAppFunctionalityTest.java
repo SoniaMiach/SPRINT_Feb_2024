@@ -26,5 +26,4 @@ public class DownloadAppFunctionalityTest extends TestInit {
 
         softAssert.assertTrue(WebDriverRunner.url().contains("https://apps.apple.com/ua/app/zakaz-ua-grocery-delivery"));
     }
-
 }
